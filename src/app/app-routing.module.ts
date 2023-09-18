@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'tutor-perfil',
     loadChildren: () => import('./tutor-perfil/tutor-perfil.module').then( m => m.TutorPerfilPageModule)
+  },
+  {
+    path: 'admin-perfil',
+    loadChildren: () => import('./admin-perfil/admin-perfil.module').then( m => m.AdminPerfilPageModule)
   }
 ];
 
