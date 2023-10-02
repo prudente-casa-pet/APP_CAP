@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&display=swap');
 
 // Menu
-a{
-    color: var(--ion-color-light);
-    text-decoration: none;
-    font-size: 1.4em;
-    margin: 3em 0.5em;
-}
+// a{
+//     color: var(--ion-color-light);
+//     text-decoration: none;
+//     font-size: 1.4em;
+//     margin: 3em 0.5em;
+// }
 
 a:hover{
     color: var(--ion-color-secondary);
@@ -19,89 +19,83 @@ a:hover{
    
 }
 
-// ion-title{
-//     text-align: center;
-// }
-
 ion-toolbar{
     height: 4.2em;
     text-align: center;
 }
 
-ion-menu {
-    //width: 20em; /* Defina a largura desejada para o menu */
-  }
+// ion-menu {
+//     //width: 20em; /* Defina a largura desejada para o menu */
+//   }
 
 ion-searchbar{
     width: 12.6em;
 }
 
 /* Aumentar o tamanho do ion-menu-button */
-
-
   .sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
     font-size: 5em;
   }
-  
 
-// .logo{
-//     height: 48px;
-//     margin-left: 25px;
-// }
-
-// .tituloPagina{
-//     font-size: 3em;
-//     text-align: center;
-//     font-family: 'Abril Fatface', cursive;
-// }
-
-// .elementos{
-//     background: var(--ion-color-tertiary);
-//     border-radius: 2.5em;
-//     margin: 0 2em 2em 2em;
-//     padding: 0.8em 3.5em;
-// }
-
-// .primeiraLinha{
-//     display: flex;
-//     justify-content: space-between;
-// }
+ion-header{
+  margin-bottom: 30px;
+  }
 
 .botoes{
     display: flex;
 }
 
-// .divInicio{
-//     display: flex;
-//     align-items: center;
-// }
 
-
-// .elemento{
-//     border-bottom: 1px solid var(--ion-color-primary);
-//     margin-top: 8px;
-// }
-
-// .elemento:last-child{
-//     border-bottom: none;
-// }
-.foto_perfil{
-    width: 59px;
-    height: 55px;
-    flex-shrink: 0;
-    border-radius: 59px;
-    border: 1px solid #F5F5F5;
-    background: url(../../assets/img/aysha_perfil.jpeg), lightgray 50% / cover no-repeat;
-    position: absolute;
-    top: 0.6em;
-    left: 1em;
-    z-index: 10000;
-  }
 .upload{
+    margin: 0 auto;
     width: 265px;
     height: 160px;
-    flex-shrink: 0;
     border-radius: 20px;
-    border: 1px dashed #000;
+    border: 1px  #000;
     background: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
+
+// Icone upload
+ion-icon{
+  font-size: 1.5em;
+}
+
+//
+#upload_foto{
+  display: none;
+}
+
+//foto pet
+.img{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.img img{
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
+}
+
+//Colocar o icone depois da escrita
+.lixinho{
+  margin-left: 10em;
+  margin-right: 10px;
+}
+
+// Input do comentario
+ion-input{
+  width: 15em;
+  //text-align: center;
+}
+
+
+
+// colocar input de comentário no upload, e alinhar no centro.
