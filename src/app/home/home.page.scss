@@ -3,61 +3,61 @@
 }
 
 #container{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  .centro{
-    width: 90%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    flex-wrap: wrap;
-  }
-  
-  .img{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  
-  
-  ion-button{
-    --color:var(--ion-color-primary);
-    --background: var(--ion-color-light);
-    --color-hover: var(--ion-color-primary);
-    --font-weight: bolder;
-    border-radius: 50px;
-    margin-top: 5vh;
-  }
-  
-  .input{
-    width: 100%;
-    margin-top: 5vh;
-  }
-  
-  input{
-    color: var(--ion-color-primary);
-    width: 90%;
-    height: 5vh;
-    padding: 7px 20px;
-    border: 1px solid #ccc; 
-    border-radius: 25px; 
-    background-color: var(--ion-color-light);
-    outline: none; 
-    transition: border-color 0.3s;
-  }
-  
-  input:focus {
-    border: 2px solid var(--ion-color-primary);
-  }
-  
-  input:focus::placeholder {
-    color: var(--ion-color-primary)
-  }
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.centro{
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.img{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+ion-button{
+  --color:var(--ion-color-primary);
+  --background: var(--ion-color-light);
+  --color-hover: var(--ion-color-primary);
+  --font-weight: bolder;
+  border-radius: 50px;
+  margin-top: 5vh;
+}
+
+.input{
+  width: 100%;
+  margin-top: 5vh;
+}
+
+input{
+  color: var(--ion-color-primary);
+  width: 90%;
+  height: 5vh;
+  padding: 7px 20px;
+  border: 1px solid #ccc; 
+  border-radius: 25px; 
+  background-color: var(--ion-color-light);
+  outline: none; 
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border: 2px solid var(--ion-color-primary);
+}
+
+input:focus::placeholder {
+  color: var(--ion-color-primary)
+}

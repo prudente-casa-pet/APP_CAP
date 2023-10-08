@@ -2,11 +2,9 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'ProjetoAngularFirebase',
+  appName: 'ProjetoPadraoAngular',
   webDir: 'www',
-  server: {
-    androidScheme: 'https'
-  }
+  bundledWebRuntime: false
 };
 
 export default config;

@@ -5,12 +5,12 @@
       <div class="img"><img src="../../assets/img/logo.png" alt="logo"></div>
 
       <div class="input">
-        <input type="email" placeholder="E-mail">
+        <input type="email" placeholder="E-mail" [(ngModel)]="email">
       </div>
       <div class="input">
-        <input type="password" placeholder="Senha">
+        <input type="password" placeholder="Senha" [(ngModel)]="senha">
       </div>
-      <ion-button id="botao_entrar" fill="solid" shape="round" [strong]="true">ENTRAR<ion-ripple-effect></ion-ripple-effect></ion-button>
+      <ion-button id="botao_entrar" fill="solid" shape="round" [strong]="true" (click)="fazerLogin()">ENTRAR<ion-ripple-effect></ion-ripple-effect></ion-button>
     </div>
   
   </div>

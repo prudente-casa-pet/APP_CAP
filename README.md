@@ -1,34 +1,26 @@
-# ProjetoAngularFirebase
-Projeto angular preparado para uso com firebase.
+# ProjetoAngular
+Projeto Angular + Ionic para ser usado com Codespace
 
-Angular CLI: 16.0.3
 
-Node: 19.9.0 (Unsupported)
+Configurações adicionadas ao projeto:
 
-Package Manager: npm 9.6.3
+    Angular CLI: 15.2.6
+    Node: 16.16.0
+    Package Manager: npm 7.19.1
+    OS: win32 x64
 
-OS: linux x64
+    Angular: 15.2.7
+    ... common, compiler, compiler-cli, core, forms
+    ... language-service, platform-browser, platform-browser-dynamic
+    ... router
 
-Angular: 16.0.3
-
-animations, cli, common, compiler, compiler-cli, core, forms,
-language-service, platform-browser, platform-browser-dynamic,
-router
-
-Package                         Version
-
-@angular-devkit/architect       0.1600.3
-
-@angular-devkit/build-angular   16.0.3
-
-@angular-devkit/core            16.0.3
-
-@angular-devkit/schematics      16.0.3
-
-@angular/fire                   7.6.1
-
-@schematics/angular             16.0.3
-
-rxjs                            7.8.1
-
-typescript                      5.0.4
+    Package                         Version
+    ---------------------------------------------------------
+    @angular-devkit/architect       0.1502.6
+    @angular-devkit/build-angular   15.2.6
+    @angular-devkit/core            15.2.6
+    @angular-devkit/schematics      15.2.6
+    @angular/cli                    15.2.6
+    @schematics/angular             15.2.6
+    rxjs                            7.5.7
+    typescript                      4.8.4
