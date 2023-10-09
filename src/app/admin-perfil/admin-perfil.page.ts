@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule, NumberSymbol } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class AdminPerfilPage implements OnInit {
 
   router: Router;
-  constructor(router: Router) {
+  constructor(router: Router, private toastController: ToastController) {
     this.router = router;
   }
   
@@ -23,7 +23,17 @@ export class AdminPerfilPage implements OnInit {
   }
 
   // Lógica de listagem
+  caminho:any = "";
   parametro = "";
+  foto:any;
+  legenda:any = "";
+  hoje:any = new Date();
+  ano = this.hoje.getFullYear();
+  mes = String(this.hoje.getMonth() + 1).padStart(2, '0');
+  dia = String(this.hoje.getDate()).padStart(2, '0');
+
+  data = `${this.ano}-${this.mes}-${this.dia}`;
+
 
   verificarArray(items:any): any {
     return Array.isArray(items)
@@ -46,6 +56,28 @@ export class AdminPerfilPage implements OnInit {
     localStorage.clear()
     this.router.navigate(['/','home']);
   }
+
+
+  // LÓGICA DE ADICIONAR
+  
+  async adicionarPostagem () {
+    if (this.foto) {
+      await this.adicionarArquivo();  // Espera o aquivo ser adicionado
+    }
+      let postagem = {
+        'legenda': `'${this.legenda}'`,
+        'foto': `'${this.caminho}'`,
+        'data': `'${this.data}'`,
+        'cod_pet': Number(localStorage.getItem('cod_pet')),
+        'curtida': 0
+      }
+      let resposta = await this.postAPI('adicionar', 'postagem', '', postagem);
+      if (resposta.ERRO) {
+        this.presentToast(resposta.ERRO); //chama toast da verificação
+      }
+    
+  }
+  
 
   // Função que faz uma busca na API
   getAPI (metodo:any, tabela:any, parametro:any) {
@@ -71,6 +103,25 @@ export class AdminPerfilPage implements OnInit {
     }
   }
 
+  // Faz um post na API
+  async postAPI (acao:any, tabela:any, parametro:any, dados:any) {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(dados),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+      }
+      return fetch(`http://localhost/Aula/API/${acao}/${tabela}/${parametro}`, options)
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => {
+        return err.json()
+      })
+  }
+
     // Pesquisa de pet
     handleInput(event:any) {
       let pesquisa = event.target.value;
@@ -87,6 +138,7 @@ export class AdminPerfilPage implements OnInit {
         }
         return await fetch(`http://localhost/Aula/API/Arquivos/Fotos/Aysha-1695068240109.jpg`, options)
         .then(res => {
+          console.log('aaa');
           return res;
         })
         .catch(err => {
@@ -94,5 +146,55 @@ export class AdminPerfilPage implements OnInit {
         })
     }
 
+     // LÓGICA DE ARQUIVOS
+  
+  onFileSelected(event: any) {
+    this.foto = event.target.files[0];
+    if (this.foto) {
+      this.foto = this.foto; // Atribui o arquivo à variável 'foto'
+    }
+  }
+
+  async adicionarArquivo () {
+    let extensao = this.foto.name.split(".");
+    extensao = extensao[extensao.length-1];
+    let nomeFoto = `${localStorage.getItem('nome_pet')}-${Date.now()}.${extensao}`;
+    this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
+    this.caminho = await this.adicionarArquivoAPI();
+    this.caminho = this.caminho.slice(4)
+  }
+  
+  // Adiciona a foto na API
+  async adicionarArquivoAPI () {
+    const formData = new FormData();
+    formData.append('file', this.foto);
+    const options = {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+      
+    };
+    try {
+        const res = await fetch(`http://localhost/Aula/API/adicionarArquivo`, options);
+        const data = await res.json();
+        return data.caminho;
+      } catch (err) {
+        console.error(err);
+        throw err;
+    }
+  }
+
+
+  async presentToast (mensagem:any) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 2000,
+      position: 'top',
+    });
+    
+    await toast.present();
+  }
 
 }
