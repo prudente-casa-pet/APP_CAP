@@ -19,10 +19,16 @@ export class AdminPerfilPage implements OnInit {
   }
   
   ngOnInit() {
-    // console.log(this.carregarImagem())
+    if (!localStorage.getItem('cod_pet')){
+      localStorage.setItem('nome_pet', 'Aysha');
+      localStorage.setItem('cod_pet', '1');
+    }
   }
 
   // Lógica de listagem
+  petNome:any = localStorage.getItem('nome_pet');
+  codPet:any = localStorage.getItem('cod_pet');
+
   caminho:any = "";
   parametro = "";
   foto:any;

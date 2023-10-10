@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary" id="main-content">
-    <ion-title>Aysha</ion-title>
+    <ion-title>{{petNome}}</ion-title>
      <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -27,23 +27,20 @@
       </ion-toolbar>
     </ion-header>
     <ion-content color="primary" class="ion-padding">
-      <div><a href="">Amora</a></div>
-      <div><a href="">Aysha</a></div>
-      <div><a href="">Faísca</a></div>
-      <div><a href="">Foguinho</a></div>
-      <div><a href="">Fumaça</a></div>
-      <div><a href="">Lily</a></div>
+      <ng-container *ngIf="verificarArray(getAPI('listar', 'pet', ''))===true">
+      <div *ngFor="let pet of getAPI('listar', 'pet', '')" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.nome}}</a></div>
+    </ng-container>
       <div><a (click)="sair()">Sair</a></div>      
     </ion-content>
   </ion-menu>
   <div class="container">
-    <div class="img">
-      <img src="../../assets/img/Aysha.jpeg" alt="">
-      <ion-icon name="paw" class="patinha"></ion-icon>
+    <ng-container *ngIf="verificarArray(getAPI('listar', 'postagens', codPet))===true">
+    <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
       <img src="../../assets/img/Ayshinha.jpeg" alt="">
       <ion-icon name="paw" class="patinha"></ion-icon>
+      <p label="Comentário">{{postagem.legenda}}</p>
     </div>
-    
+    </ng-container>
   </div>
 
   

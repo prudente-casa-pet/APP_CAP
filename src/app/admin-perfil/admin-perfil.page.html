@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary" id="main-content">
     <!-- <img class="foto_perfil" src="../../assets/img/perfil.jpeg" alt="Foto de perfil" > -->
-    <ion-title>Aysha</ion-title>
+    <ion-title>{{petNome}}</ion-title>
      <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -43,20 +43,14 @@
   <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60" [(ngModel)]="legenda"></ion-input>
   <ion-button (click)="adicionarPostagem()">Adicionar</ion-button>
 </div>
-
-  <div class="img">
-    <img src="../../assets/img/Aysha.jpeg" alt="">
-    <ion-icon name="trash-outline" class="lixinho"></ion-icon>
-    <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60"></ion-input>
-    
+  <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
+    <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
+      <img src="../../assets/img/Ayshinha.jpeg" alt="">
+      <ion-icon name="trash-outline" class="lixinho"></ion-icon>
+      <p label="Comentário">{{postagem.legenda}}</p>
     </div>
+  </ng-container>
 
-  <div class="img">
-    <img src="../../assets/img/Ayshinha.jpeg" alt="">
-    <ion-icon name="trash-outline" class="lixinho"></ion-icon>
-    <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60"></ion-input>
-    
-    </div>
 </ion-col></ion-row>
 </div>
 
