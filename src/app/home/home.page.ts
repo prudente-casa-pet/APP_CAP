@@ -38,9 +38,9 @@ export class HomePage {
     }
     else {
       if(localStorage.getItem('admin')){
-        this.router.navigate(['/','admin-perfil']);
+        this.router.navigate(['/','home-admin']);
       } else if(localStorage.getItem('tutor')){
-        this.router.navigate(['/','tutor-perfil']);
+        this.router.navigate(['/','home-tutor']);
       }
     }
   }

@@ -3,6 +3,7 @@ import { CommonModule, NumberSymbol } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-admin-perfil',
@@ -14,14 +15,13 @@ import { Router } from '@angular/router';
 export class AdminPerfilPage implements OnInit {
 
   router: Router;
-  constructor(router: Router, private toastController: ToastController) {
+  constructor(router: Router, private toastController: ToastController, private firebaseService: FirebaseService) {
     this.router = router;
   }
   
   ngOnInit() {
     if (!localStorage.getItem('cod_pet')){
-      localStorage.setItem('nome_pet', 'Aysha');
-      localStorage.setItem('cod_pet', '1');
+      this.router.navigate(['/home-admin']);
     }
   }
 
@@ -70,17 +70,17 @@ export class AdminPerfilPage implements OnInit {
     if (this.foto) {
       await this.adicionarArquivo();  // Espera o aquivo ser adicionado
     }
-      let postagem = {
-        'legenda': `'${this.legenda}'`,
-        'foto': `'${this.caminho}'`,
-        'data': `'${this.data}'`,
-        'cod_pet': Number(localStorage.getItem('cod_pet')),
-        'curtida': 0
-      }
-      let resposta = await this.postAPI('adicionar', 'postagem', '', postagem);
-      if (resposta.ERRO) {
-        this.presentToast(resposta.ERRO); //chama toast da verificação
-      }
+    let postagem = {
+      'legenda': `'${this.legenda}'`,
+      'foto': `'${this.caminho}'`,
+      'data': `'${this.data}'`,
+      'cod_pet': Number(localStorage.getItem('cod_pet')),
+      'curtida': 0
+    }
+    let resposta = await this.postAPI('adicionar', 'postagem', '', postagem);
+    if (resposta.ERRO) {
+      this.presentToast(resposta.ERRO); //chama toast da verificação
+    }
     
   }
   
@@ -135,23 +135,6 @@ export class AdminPerfilPage implements OnInit {
     }
 
 
-    async carregarImagem () {
-      const options = {
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-        }
-        return await fetch(`http://localhost/Aula/API/Arquivos/Fotos/Aysha-1695068240109.jpg`, options)
-        .then(res => {
-          console.log('aaa');
-          return res;
-        })
-        .catch(err => {
-          return err;
-        })
-    }
-
      // LÓGICA DE ARQUIVOS
   
   onFileSelected(event: any) {
@@ -166,30 +149,7 @@ export class AdminPerfilPage implements OnInit {
     extensao = extensao[extensao.length-1];
     let nomeFoto = `${localStorage.getItem('nome_pet')}-${Date.now()}.${extensao}`;
     this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
-    this.caminho = await this.adicionarArquivoAPI();
-    this.caminho = this.caminho.slice(4)
-  }
-  
-  // Adiciona a foto na API
-  async adicionarArquivoAPI () {
-    const formData = new FormData();
-    formData.append('file', this.foto);
-    const options = {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-      
-    };
-    try {
-        const res = await fetch(`http://localhost/Aula/API/adicionarArquivo`, options);
-        const data = await res.json();
-        return data.caminho;
-      } catch (err) {
-        console.error(err);
-        throw err;
-    }
+    this.caminho = await this.firebaseService.carregarImagem(this.foto)
   }
 
 

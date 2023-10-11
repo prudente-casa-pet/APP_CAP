@@ -4,29 +4,27 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-tutor-perfil',
-  templateUrl: './tutor-perfil.page.html',
-  styleUrls: ['./tutor-perfil.page.scss'],
+  selector: 'app-home-admin',
+  templateUrl: './home-admin.page.html',
+  styleUrls: ['./home-admin.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class TutorPerfilPage implements OnInit {
-  
+export class HomeAdminPage implements OnInit {
+
   router: Router;
   constructor(router: Router) {
     this.router = router;
   }
   ngOnInit() {
-    if (!localStorage.getItem('cod_pet')){
-      this.router.navigate(['/home-tutor']);
-    }
   }
 
   petNome:any = localStorage.getItem('nome_pet');
   codPet:any = localStorage.getItem('cod_pet');
   fotoPerfil:any = localStorage.getItem('foto_perfil')
+  parametro = "";
+
 
   escolherPet(pet: any){
     localStorage.setItem('nome_pet', pet.nome);
@@ -66,5 +64,9 @@ export class TutorPerfilPage implements OnInit {
         return Array();
       }
     }
-
+    // Pesquisa de pet
+    handleInput(event:any) {
+      let pesquisa = event.target.value;
+      this.parametro = pesquisa;
+    }
 }

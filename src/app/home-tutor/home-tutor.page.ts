@@ -4,24 +4,20 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
 @Component({
-  selector: 'app-tutor-perfil',
-  templateUrl: './tutor-perfil.page.html',
-  styleUrls: ['./tutor-perfil.page.scss'],
+  selector: 'app-home-tutor',
+  templateUrl: './home-tutor.page.html',
+  styleUrls: ['./home-tutor.page.scss'],
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
-export class TutorPerfilPage implements OnInit {
-  
+export class HomeTutorPage implements OnInit {
+
   router: Router;
   constructor(router: Router) {
     this.router = router;
   }
   ngOnInit() {
-    if (!localStorage.getItem('cod_pet')){
-      this.router.navigate(['/home-tutor']);
-    }
   }
 
   petNome:any = localStorage.getItem('nome_pet');

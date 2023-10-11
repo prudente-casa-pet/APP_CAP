@@ -1,12 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary" id="main-content">
-    <ion-title>{{petNome}}</ion-title>
+    <ion-title>Perfil</ion-title>
      <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
-<img class="foto_perfil" src="{{fotoPerfil}}" alt="" >
+<img class="foto_perfil" src="" alt="" >
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -27,23 +27,13 @@
       </ion-toolbar>
     </ion-header>
     <ion-content color="primary" class="ion-padding">
-      <div><a href="/home-admin">Home</a></div>
-
+      <div><a href="/home-tutor">Home</a></div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet', ''))===true">
       <div *ngFor="let pet of getAPI('listar', 'pet', '')" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.nome}}</a></div>
     </ng-container>
       <div><a (click)="sair()">Sair</a></div>      
     </ion-content>
   </ion-menu>
-  <div class="container">
-    <ng-container *ngIf="verificarArray(getAPI('listar', 'postagens', codPet))===true">
-    <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
-      <img src="{{postagem.foto}}" alt="">
-      <ion-icon name="paw" class="patinha"></ion-icon>
-      <p label="Comentário">{{postagem.legenda}}</p>
-    </div>
-    </ng-container>
-  </div>
 
   
 </div>
