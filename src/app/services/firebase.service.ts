@@ -7,6 +7,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class FirebaseService {
+
+  // Inicialização do Firebase
   private firebaseConfig = {
     apiKey: "AIzaSyBoDdQwC-EN9TaUxSpw3TwqHzH3oDKDE0U",
     authDomain: "fotos-prudente-casa-pet.firebaseapp.com",
@@ -21,37 +23,32 @@ export class FirebaseService {
 
   constructor() {}
   
+  // Função que envia as imagens
   async carregarImagem(foto: any) {
     const storageRef = ref(this.storage, 'Arquivos/Fotos/' + foto.name); // Define o caminho do arquivo no Storage
     
     // Faz o upload da foto para o Firebase Storage
     try {
       const snapshot = await uploadBytes(storageRef, foto);      
-      // Obtém a URL da imagem após o upload
       const imageUrl = await getDownloadURL(snapshot.ref);
-      return imageUrl;
+      return imageUrl;  // Retorna url da imagem enviada
     } catch (error) {
       console.error('Erro ao fazer o upload: ', error);
-      // Aqui você pode adicionar código para lidar com erros durante o upload, se necessário
       throw error; // Propaga o erro para o chamador da função, se necessário
     }
   }
 
+  // Função que exclui a imagem
   async excluirImagem(url: string) {
     try {
       // Converta a URL da imagem de volta em uma referência de storage
       const storageRef = ref(this.storage, url);
-
       // Exclua o objeto no Firebase Storage
       await deleteObject(storageRef);
       console.log('Imagem excluída com sucesso');
-
-      // Aqui você pode adicionar código adicional, se necessário, após a exclusão da imagem.
-
     } catch (error) {
       console.error('Erro ao excluir a imagem: ', error);
-      // Aqui você pode adicionar código para lidar com erros durante a exclusão, se necessário.
-      throw error; // Propaga o erro para o chamador da função, se necessário.
+      throw error;
     }
   }
 }

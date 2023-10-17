@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
+import { DeletarPostagemComponent } from '../modals/deletar-postagem/deletar-postagem.component';
+
 
 @Component({
   selector: 'app-admin-perfil',
@@ -15,11 +17,12 @@ import { FirebaseService } from '../services/firebase.service';
 export class AdminPerfilPage implements OnInit {
 
   router: Router;
-  constructor(router: Router, private toastController: ToastController, private firebaseService: FirebaseService) {
+  constructor(router: Router, private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService) {
     this.router = router;
   }
   
   ngOnInit() {
+    // Se pet não esta selecionado, redireciona para home-admin
     if (!localStorage.getItem('cod_pet')){
       this.router.navigate(['/home-admin']);
     }
@@ -28,19 +31,8 @@ export class AdminPerfilPage implements OnInit {
   // Lógica de listagem
   petNome:any = localStorage.getItem('nome_pet');
   codPet:any = localStorage.getItem('cod_pet');
-
-  caminho:any = "";
-  parametro = "";
-  foto:any;
-  legenda:any = "";
-  hoje:any = new Date();
-  ano = this.hoje.getFullYear();
-  mes = String(this.hoje.getMonth() + 1).padStart(2, '0');
-  dia = String(this.hoje.getDate()).padStart(2, '0');
-
-  data = `${this.ano}-${this.mes}-${this.dia}`;
-
-
+  fotoPerfil:any = localStorage.getItem('foto_perfil')
+  
   verificarArray(items:any): any {
     return Array.isArray(items)
   }
@@ -52,19 +44,30 @@ export class AdminPerfilPage implements OnInit {
     }
     return range;
   }
-
+  
   escolherPet(pet: any){
     localStorage.setItem('nome_pet', pet.pet_nome);
     localStorage.setItem('cod_pet', pet.cod_pet);
+    localStorage.setItem('foto_perfil', pet.foto_perfil);
   }
-
+  
   sair(){
     localStorage.clear()
     this.router.navigate(['/','home']);
   }
-
-
+  
+  
   // LÓGICA DE ADICIONAR
+
+  caminho:any = "";
+  parametro = "";
+  foto:any;
+  legenda:any = "";
+  hoje:any = new Date();
+  ano = this.hoje.getFullYear();
+  mes = String(this.hoje.getMonth() + 1).padStart(2, '0');
+  dia = String(this.hoje.getDate()).padStart(2, '0');
+  data = `${this.ano}-${this.mes}-${this.dia}`;
   
   async adicionarPostagem () {
     if (this.foto) {
@@ -84,7 +87,12 @@ export class AdminPerfilPage implements OnInit {
     
   }
   
-
+  // Pesquisa de pet
+  handleInput(event:any) {
+    let pesquisa = event.target.value;
+    this.parametro = pesquisa;
+  }
+  
   // Função que faz uma busca na API
   getAPI (metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();
@@ -127,15 +135,9 @@ export class AdminPerfilPage implements OnInit {
         return err.json()
       })
   }
+  
 
-    // Pesquisa de pet
-    handleInput(event:any) {
-      let pesquisa = event.target.value;
-      this.parametro = pesquisa;
-    }
-
-
-     // LÓGICA DE ARQUIVOS
+  // LÓGICA DE ARQUIVOS
   
   onFileSelected(event: any) {
     this.foto = event.target.files[0];
@@ -149,9 +151,21 @@ export class AdminPerfilPage implements OnInit {
     extensao = extensao[extensao.length-1];
     let nomeFoto = `${localStorage.getItem('nome_pet')}-${Date.now()}.${extensao}`;
     this.foto = new File([this.foto], nomeFoto, { type: this.foto.type });
-    this.caminho = await this.firebaseService.carregarImagem(this.foto)
+    this.caminho = await this.firebaseService.carregarImagem(this.foto);
   }
 
+  // Abre modal de atualizar pet passa parâmetro
+  async modalDeletarPostagem(data: any) {
+    const modal = await this.modalController.create({
+      component: DeletarPostagemComponent,
+      componentProps: {
+        customData: data
+      },
+    });
+    await modal.present();
+  }
+
+// Componentes
 
   async presentToast (mensagem:any) {
     const toast = await this.toastController.create({

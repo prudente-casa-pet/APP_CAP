@@ -1,22 +1,15 @@
-<ion-header [translucent]="true">
+<img class="foto_perfil" src="{{fotoPerfil}}" alt="" >
+
+<ion-header>
   <ion-toolbar color="primary" id="main-content">
-    <!-- <img class="foto_perfil" src="../../assets/img/perfil.jpeg" alt="Foto de perfil" > -->
     <ion-title>{{petNome}}</ion-title>
-     <ion-buttons slot="end">
+      <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar color="primary" id="main-content">
-      <ion-buttons slot="end"> 
-        <ion-menu-button id="ion-menu-button"></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-   
 <div id="container">
 
   <!-- Menu -->
@@ -27,7 +20,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content color="primary" class="ion-padding">
-      <ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)"></ion-searchbar>
+      <ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)" color="light"></ion-searchbar>
       <div><a href="/home-admin">Home</a></div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet_tutor', parametro))===true">
         <div *ngFor="let pet of getAPI('listar', 'pet_tutor', parametro)" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.pet_nome}} - {{pet.tutor_nome.split(" ")[0]}}</a></div>
@@ -37,22 +30,22 @@
     </ion-content>
   </ion-menu>
   
-<ion-row><ion-col size="12" class="ion-justify-content-center">
-  <div class="img">
-  <label class="upload" for="upload_foto"><ion-icon name="add-circle-outline"></ion-icon></label>
-  <input type="file" name="upload_foto" id="upload_foto" (change)="onFileSelected($event)">
-  <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60" [(ngModel)]="legenda"></ion-input>
-  <ion-button (click)="adicionarPostagem()">Adicionar</ion-button>
-</div>
-  <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
-    <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
-      <img src="{{postagem.foto}}" alt="">
-      <ion-icon name="trash-outline" class="lixinho"></ion-icon>
-      <p label="Comentário">{{postagem.legenda}}</p>
+  <ion-row><ion-col size="12" class="ion-justify-content-center">
+    <div class="img">
+      <button (click)="adicionarPostagem()">Publicar</button>
+      <label class="upload" for="upload_foto"><ion-icon name="add-circle-outline"></ion-icon></label>
+      <input type="file" name="upload_foto" id="upload_foto" (change)="onFileSelected($event)">
+      <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60" [(ngModel)]="legenda"></ion-input>
     </div>
-  </ng-container>
-
-</ion-col></ion-row>
+    <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
+      <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
+        <img src="{{postagem.foto}}" alt="">
+        <ion-icon name="trash-outline" class="lixinho"></ion-icon>
+        <p label="Comentário">{{postagem.legenda}}</p>
+      </div>
+    </ng-container>
+  
+  </ion-col></ion-row>
 </div>
 
 <ion-footer>

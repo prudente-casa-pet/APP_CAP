@@ -15,39 +15,33 @@ a:hover{
 
 //mudar a cor da escrita do menu
 a {
-  background-color: transparent;
-  color: var(--ion-color-light);
+    background-color: transparent;
+    color: var(--ion-color-light);
 }
-
-
-// Pet
 
 #container{
     min-height: calc(100vh - 112px);
 }
 
-ion-toolbar{
-    height: 4.2em;
-    text-align: center;
+ion-title{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20000;
 }
 
-// ion-menu {
-//     //width: 20em; /* Defina a largura desejada para o menu */
-//   }
-
-ion-searchbar{
-    width: 12.6em;
-}
+// ion-toolbar{
+//   height: 4.2em;
+//   text-align: center;
+// }
 
 
 /* Aumentar o tamanho do ion-menu-button */
-  .sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
+.sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
     font-size: 5em;
-  }
+}
 
-ion-header{
-  //margin-bottom: 30px;
-  }
 
 .botoes{
     display: flex;
@@ -55,7 +49,7 @@ ion-header{
 
 
 .upload{
-    margin: 0 auto;
+    margin: 4px auto;
     width: 265px;
     height: 160px;
     border-radius: 20px;
@@ -68,45 +62,65 @@ ion-header{
     margin-bottom: 20px;
 }
 
+button{
+    margin: 2em 0 3px 160px;
+    padding: 0.1em 0.5em;
+    border-radius: 0.3em;
+    font-size: 1em;
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-light);
+}
+
 // Icone upload
 ion-icon{
-  font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 //
 #upload_foto{
-  display: none;
+    display: none;
 }
 
-//foto pet
 .img{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .img img{
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
+}
+
+//foto pet
+.foto_perfil{
+    width: 4em;
+    height: 4em;
+    border-radius: 100%;
+    border: 2px solid #F5F5F5;
+    position: absolute;
+    top: 0.4em;
+    left: 0.4em;
+    z-index: 10000;
 }
 
 //Colocar o icone depois da escrita
 .lixinho{
-  margin-left: 10em;
-  margin-right: 10px;
+    margin-left: 10em;
+    margin-right: 10px;
 }
 
 // Input do comentario
 ion-input{
-  width: 15em;
+    width: 15em;
   //text-align: center;
 }
 
 
 
 
-// colocar input de comentário no upload, e alinhar no centro. (v)
-// sair do app (menu) (v)
-// arrumar menu (v)
+// // colocar input de comentário no upload, e alinhar no centro. (v)
+// // sair do app (menu) (v)
+// // arrumar menu (v)

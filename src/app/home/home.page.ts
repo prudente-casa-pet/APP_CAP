@@ -45,13 +45,14 @@ export class HomePage {
     }
   }
 
+  // Lógica de componentes
+
   async presentToast (mensagem:any) {
     const toast = await this.toastController.create({
       message: mensagem,
       duration: 2000,
-      position: 'top',
-    });
-    
+      position: 'top'
+    });  
     await toast.present();
   }
 
