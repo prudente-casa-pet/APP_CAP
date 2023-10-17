@@ -31,7 +31,7 @@
     <ng-container *ngIf="verificarArray(getAPI('listar', 'postagens', codPet))===true">
     <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
       <img src="{{postagem.foto}}" alt="">
-      <ion-icon name="paw" class="patinha"></ion-icon>
+      <ion-icon name="paw" class="patinha" (click)="curtir(postagem.cod_postagem)"></ion-icon>
       <p label="Comentário">{{postagem.legenda}}</p>
     </div>
     </ng-container>

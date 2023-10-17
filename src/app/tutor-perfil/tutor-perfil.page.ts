@@ -46,6 +46,11 @@ export class TutorPerfilPage implements OnInit {
     return Array.isArray(items)
   }
 
+  curtir(postagem:any){
+    this.getAPI('curtir', postagem, "");
+
+  }
+
   // Função que faz uma busca na API
   getAPI (metodo:any, tabela:any, parametro:any) {
     const request = new XMLHttpRequest();

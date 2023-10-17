@@ -18,6 +18,7 @@ export class HomeTutorPage implements OnInit {
     this.router = router;
   }
   ngOnInit() {
+    console.log(this.getAPI('listar', 'agendamento-pendente', ''))
   }
 
   petNome:any = localStorage.getItem('nome_pet');
@@ -38,6 +39,15 @@ export class HomeTutorPage implements OnInit {
 
   verificarArray(items:any): any {
     return Array.isArray(items)
+  }
+
+  gerarDataPostIt (data:any) {
+    data = data.split("-");
+    let mes = data[1];
+    let dia = data[2];
+    let ano = data[0];
+    let dataFormatada = `${dia}/${mes}/${ano}`;
+    return dataFormatada;
   }
     // Função que faz uma busca na API
     getAPI (metodo:any, tabela:any, parametro:any) {
