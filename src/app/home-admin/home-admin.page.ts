@@ -17,8 +17,7 @@ export class HomeAdminPage implements OnInit {
   constructor(router: Router) {
     this.router = router;
   }
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // Lógica de listagem
 
@@ -28,7 +27,7 @@ export class HomeAdminPage implements OnInit {
   parametro = "";
 
   escolherPet(pet: any){
-    localStorage.setItem('nome_pet', pet.nome);
+    localStorage.setItem('nome_pet', pet.pet_nome);
     localStorage.setItem('cod_pet', pet.cod_pet);
     localStorage.setItem('foto_perfil', pet.foto_perfil);
   }
@@ -70,5 +69,36 @@ export class HomeAdminPage implements OnInit {
   handleInput(event:any) {
     let pesquisa = event.target.value;
     this.parametro = pesquisa;
+  }
+
+  // Lógica da Agenda
+
+  hoje = new Date();                          // Dia atual
+  amanha = this.adicionarUmDia(this.hoje);    // Dia seguinte
+
+  adicionarUmDia (data: Date) : Date {
+    const novaData = new Date(data);
+    novaData.setDate(novaData.getDate() + 1);
+    return novaData;
+  }
+
+  gerarDataPostIt (data:any) {
+    let mes = data.getMonth()+1;
+    let dia = data.getDate();
+    let dataFormatada = dia < 10 ? `0${dia}` : dia;
+    dataFormatada += '/';
+    dataFormatada += mes < 10 ? `0${mes}` : mes;
+    return dataFormatada;
+  }
+  
+  gerarDataPostItAPI (data:any) {
+    let mes = data.getMonth()+1;
+    let dia = data.getDate();
+    let ano = data.getFullYear();
+    let dataFormatada = ano + '-';
+    dataFormatada += mes < 10 ? `0${mes}` : mes;
+    dataFormatada += '-';
+    dataFormatada += dia < 10 ? `0${dia}` : dia;
+    return dataFormatada;
   }
 }

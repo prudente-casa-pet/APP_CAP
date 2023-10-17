@@ -23,13 +23,9 @@ a {
 // Pet
 
 #container{
-    min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 112px);
 }
 
-ion-toolbar{
-    height: 4.2em;
-    text-align: center;
-}
 
 // ion-menu {
 //     //width: 20em; /* Defina a largura desejada para o menu */
@@ -45,9 +41,7 @@ ion-searchbar{
     font-size: 5em;
   }
 
-ion-header{
-  //margin-bottom: 30px;
-  }
+
 
 .botoes{
     display: flex;
@@ -105,7 +99,46 @@ ion-input{
 }
 
 
+.data {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-left: 1em;
+}
 
+.ativo{
+  color: var(--ion-color-quartenary);
+}
+
+.titulo{
+  font-weight: bolder;
+  font-size: 1.5em;
+  margin-left: 1em;
+}
+
+.elementos{
+  background-color: var(--ion-color-tertiary);
+  padding: 1em;
+  margin: 0.5em;
+  border-radius: 2em;
+}
+
+.elemento{
+  border-bottom: 1px solid var(--ion-color-primary);
+  margin-top: 8px;
+}
+
+.elemento:last-child{
+  border-bottom: none;
+}
+
+ion-fab{
+  margin-left: 2em;
+}
+
+.primeiraLinha{
+  display: flex;
+  justify-content: space-between;
+}
 
 // colocar input de comentário no upload, e alinhar no centro. (v)
 // sair do app (menu) (v)

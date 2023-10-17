@@ -1,22 +1,13 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar color="primary" id="main-content">
-    <!-- <img class="foto_perfil" src="../../assets/img/perfil.jpeg" alt="Foto de perfil" > -->
-    <ion-title>{{petNome}}</ion-title>
-     <ion-buttons slot="end">
+    <ion-title>Home</ion-title>
+      <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar color="primary" id="main-content">
-      <ion-buttons slot="end"> 
-        <ion-menu-button id="ion-menu-button"></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-   
 <div id="container">
 
   <!-- Menu -->
@@ -27,7 +18,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content color="primary" class="ion-padding">
-      <ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)"></ion-searchbar>
+      <ion-searchbar placeholder="Pesquisar" [debounce]="800" (ionInput)="handleInput($event)" color="light"></ion-searchbar>
       <div><a href="/home-admin">Home</a></div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet_tutor', parametro))===true">
         <div *ngFor="let pet of getAPI('listar', 'pet_tutor', parametro)" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.pet_nome}} - {{pet.tutor_nome.split(" ")[0]}}</a></div>
@@ -36,7 +27,63 @@
       
     </ion-content>
   </ion-menu>
+  <ion-row>
+    <ion-col size="12">
+        <p class="titulo">Hoje - {{gerarDataPostIt(hoje)}}</p>
+        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje)))===true">
+            <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje))">
+              <div class="primeiraLinha">
+                <p class="titulo">{{getAPI('listar', 'pet', agendamento.cod_pet)[0].nome}} - {{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</p>
+                </div>
+              <div class="segundaLinha">
+                <ul>
+                  <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
+                  <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
+                  <li><b>Observação:</b> {{agendamento.observacao}}</li>
+                </ul>
+              </div>
+          </div>
+        </div>
+        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje)))===false">
+          <div class="elemento">
+            <div class="segundaLinha">
+              <ul>
+                <li>Não há agendamentos hoje</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+    </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col size="12">
+      <p class="titulo">Amanhã - {{gerarDataPostIt(amanha)}}</p>
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha)))===true">
+          <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha))">
+            <div class="primeiraLinha">
+              <p class="titulo">{{getAPI('listar', 'pet', agendamento.cod_pet)[0].nome}} - {{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</p>
+              </div>
+            <div class="segundaLinha">
+              <ul>
+                <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
+                <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
+                <li><b>Observação:</b> {{agendamento.observacao}}</li>
+              </ul>
+            </div>
+        </div>
+      </div>
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha)))===false">
+        <div class="elemento">
+          <div class="segundaLinha">
+            <ul>
+              <li>Não há agendamentos amanhã</li>
+            </ul>
+          </div>
+      </div>
+    </div>
+  </ion-col>
   
+</ion-row>
 </div>
 
 <ion-footer>

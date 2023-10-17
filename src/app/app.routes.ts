@@ -22,13 +22,17 @@ export const routes: Routes = [
     path: 'admin-perfil',
     loadComponent: () => import('./admin-perfil/admin-perfil.page').then( m => m.AdminPerfilPage),
     canActivate: [IsLoginGuard, IsAdminGuard]
-  },  {
+  },
+  {
     path: 'home-tutor',
-    loadComponent: () => import('./home-tutor/home-tutor.page').then( m => m.HomeTutorPage)
+    loadComponent: () => import('./home-tutor/home-tutor.page').then( m => m.HomeTutorPage),
+    canActivate: [IsLoginGuard, IsTutorGuard]
+
   },
   {
     path: 'home-admin',
-    loadComponent: () => import('./home-admin/home-admin.page').then( m => m.HomeAdminPage)
+    loadComponent: () => import('./home-admin/home-admin.page').then( m => m.HomeAdminPage),
+    canActivate: [IsLoginGuard, IsAdminGuard]
   }
 
 ];

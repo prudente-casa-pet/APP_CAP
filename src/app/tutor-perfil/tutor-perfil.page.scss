@@ -19,12 +19,6 @@ a:hover{
    
 }
 
-
-ion-toolbar{
-    height: 3em;
-    text-align: center;
-}
-
 // ion-menu {
 //     width: 25em; /* Defina a largura desejada para o menu */
 //   }
@@ -46,15 +40,15 @@ ion-toolbar{
     display: flex;
 }
 
+//foto pet
 .foto_perfil{
-  width: 59px;
-  height: 55px;
-  flex-shrink: 0;
-  border-radius: 59px;
-  border: 1px solid #F5F5F5;
+  width: 4em;
+  height: 4em;
+  border-radius: 100%;
+  border: 2px solid #F5F5F5;
   position: absolute;
-  top: 0.6em;
-  left: 1em;
+  top: 0.4em;
+  left: 0.4em;
   z-index: 10000;
 }
 
