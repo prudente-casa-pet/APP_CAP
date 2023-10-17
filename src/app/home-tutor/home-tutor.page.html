@@ -26,24 +26,24 @@
   </ion-menu>
   <ion-row>
     <ion-col size="12">
-        <p class="titulo">Pagamento Pendente</p>
-        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento-pendente', ''))===true">
-            <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento-pendente', '')">
-              <div class="primeiraLinha">
-                <p class="titulo">{{gerarDataPostIt(agendamento.data)}}</p>
-                </div>
-              <div class="segundaLinha">
-                <ul>
-                  <li><b>Nome:</b> <span>{{agendamento.nome}}</span></li>
-                  <li><b>Serviço:</b> <span>{{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</span></li>
-                  <li><b>:Valor</b> <span>{{agendamento.valor_total}}</span></li>
-                  <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
-                  <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
-                  <li><b>Observação:</b> {{agendamento.observacao}}</li>
-                </ul>
+      <p class="titulo">Pagamento Pendente</p>
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento-pendente', ''))===true">
+          <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento-pendente', '')">
+            <div class="primeiraLinha">
+              <p class="titulo">{{gerarDataPostIt(agendamento.data)}}</p>
               </div>
-          </div>
+            <div class="segundaLinha">
+              <ul>
+                <li><b>Nome:</b> <span>{{agendamento.nome}}</span></li>
+                <li><b>Serviço:</b> <span>{{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</span></li>
+                <li><b>:Valor</b> <span>{{agendamento.valor_total}}</span></li>
+                <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
+                <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
+                <li><b>Observação:</b> {{agendamento.observacao}}</li>
+              </ul>
+            </div>
         </div>
+      </div>
         <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento-pendente', ''))===false">
           <div class="elemento">
             <div class="segundaLinha">

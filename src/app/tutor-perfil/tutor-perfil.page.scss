@@ -19,6 +19,23 @@ a:hover{
    
 }
 
+.curtido{
+  animation: pulse 1s;
+  color: var(--ion-color-quartenary);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 // ion-menu {
 //     width: 25em; /* Defina a largura desejada para o menu */
 //   }
