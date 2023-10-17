@@ -40,7 +40,7 @@
     <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
       <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
         <img src="{{postagem.foto}}" alt="">
-        <ion-icon name="trash-outline" class="lixinho"></ion-icon>
+        <ion-icon name="trash-outline" class="lixinho" (click)="modalDeletarPostagem(postagem)"></ion-icon>
         <p label="Comentário">{{postagem.legenda}}</p>
       </div>
     </ng-container>
