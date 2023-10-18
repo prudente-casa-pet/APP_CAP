@@ -83,8 +83,10 @@ export class AdminPerfilPage implements OnInit {
     let resposta = await this.postAPI('adicionar', 'postagem', '', postagem);
     if (resposta.ERRO) {
       this.presentToast(resposta.ERRO); //chama toast da verificação
+    } else {
+      this.legenda = "";
+      this.presentToast("Postagem adicionada com sucesso")
     }
-    
   }
   
   // Pesquisa de pet

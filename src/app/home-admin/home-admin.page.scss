@@ -2,11 +2,11 @@
 
 //MENU:
 a{
-    color: var(--ion-color-light);
-    text-decoration: none;
-    font-size: 1.4em;
-    margin: 3em 0.5em;
-    background-color: var(--ion-color-secondary);
+  color: var(--ion-color-light);
+  text-decoration: none;
+  font-size: 1.4em;
+  margin: 3em 0.5em;
+  background-color: var(--ion-color-secondary);
 }
 
 a:hover{
@@ -19,47 +19,51 @@ a {
   color: var(--ion-color-light);
 }
 
-
-// Pet
+.sair{
+  position: fixed;
+  bottom: 0;
+}
 
 #container{
-  min-height: calc(100vh - 112px);
+  min-height: calc(100vh - 6em);
+}
+
+ion-toolbar{
+  height: 3em;
+}
+
+ion-header{
+  position: static;
 }
 
 
-// ion-menu {
-//     //width: 20em; /* Defina a largura desejada para o menu */
-//   }
-
 ion-searchbar{
-    width: 12.6em;
+  width: 12.6em;
 }
 
 
 /* Aumentar o tamanho do ion-menu-button */
-  .sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
-    font-size: 5em;
-  }
-
-
+.sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
+  font-size: 5em;
+}
 
 .botoes{
-    display: flex;
+  display: flex;
 }
 
 
 .upload{
-    margin: 0 auto;
-    width: 265px;
-    height: 160px;
-    border-radius: 20px;
-    border: 1px  #000;
-    background: #D9D9D9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
+  margin: 0 auto;
+  width: 265px;
+  height: 160px;
+  border-radius: 20px;
+  border: 1px  #000;
+  background: #D9D9D9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 // Icone upload
@@ -139,6 +143,7 @@ ion-fab{
   display: flex;
   justify-content: space-between;
 }
+
 
 // colocar input de comentário no upload, e alinhar no centro. (v)
 // sair do app (menu) (v)

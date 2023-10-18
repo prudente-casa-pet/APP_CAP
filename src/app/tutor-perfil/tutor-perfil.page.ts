@@ -48,7 +48,6 @@ export class TutorPerfilPage implements OnInit {
 
   curtir(postagem:any){
     this.getAPI('curtir', postagem, "");
-
   }
 
   // Função que faz uma busca na API

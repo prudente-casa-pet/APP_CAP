@@ -3,7 +3,7 @@
 <ion-header>
   <ion-toolbar color="primary" id="main-content">
     <ion-title>{{petNome}}</ion-title>
-      <ion-buttons slot="end">
+    <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
@@ -25,15 +25,16 @@
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet_tutor', parametro))===true">
         <div *ngFor="let pet of getAPI('listar', 'pet_tutor', parametro)" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.pet_nome}} - {{pet.tutor_nome.split(" ")[0]}}</a></div>
       </ng-container>
-      <div><a (click)="sair()" href="/home">Sair</a></div>
-      
+      <div class="sair"><a (click)="sair()" href="/home">Sair</a></div>
     </ion-content>
   </ion-menu>
   
   <ion-row>
     <ion-col size="12" class="ion-justify-content-center">
       <div class="img">
-        <button (click)="adicionarPostagem()">Publicar</button>
+        <div class="botao">
+          <button (click)="adicionarPostagem()">Publicar</button>
+        </div>
         <label class="upload" for="upload_foto"><ion-icon name="add-circle-outline"></ion-icon></label>
         <input type="file" name="upload_foto" id="upload_foto" (change)="onFileSelected($event)">
         <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60" [(ngModel)]="legenda"></ion-input>
@@ -41,8 +42,14 @@
       <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
         <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
           <img src="{{postagem.foto}}" alt="">
-          <ion-icon name="trash-outline" class="lixinho" (click)="modalDeletarPostagem(postagem)"></ion-icon>
-          <p label="Comentário">{{postagem.legenda}}</p>
+          <ion-row class="linha-comentario">
+            <ion-col size="9">
+              <p>{{postagem.legenda}}</p>
+            </ion-col>
+            <ion-col size="3" class="col-lixinho">
+              <ion-icon name="trash-outline" class="lixinho" (click)="modalDeletarPostagem(postagem)"></ion-icon>
+            </ion-col>
+          </ion-row>
         </div>
       </ng-container>
   </ion-col>

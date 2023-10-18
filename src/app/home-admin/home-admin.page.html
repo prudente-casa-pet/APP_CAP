@@ -23,8 +23,7 @@
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet_tutor', parametro))===true">
         <div *ngFor="let pet of getAPI('listar', 'pet_tutor', parametro)" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.pet_nome}} - {{pet.tutor_nome.split(" ")[0]}}</a></div>
       </ng-container>
-      <div><a (click)="sair()" href="/home">Sair</a></div>
-      
+      <div class="sair"><a (click)="sair()" href="/home">Sair</a></div>
     </ion-content>
   </ion-menu>
   <ion-row>
@@ -37,9 +36,9 @@
                 </div>
               <div class="segundaLinha">
                 <ul>
-                  <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
+                  <li><b>Pacote: </b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
                   <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
-                  <li><b>Observação:</b> {{agendamento.observacao}}</li>
+                  <li><b>Observação: </b> {{agendamento.observacao}}</li>
                 </ul>
               </div>
           </div>
@@ -65,9 +64,9 @@
               </div>
             <div class="segundaLinha">
               <ul>
-                <li><b>Pacote:</b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
+                <li><b>Pacote: </b> <span *ngIf="agendamento.cod_pacote != null"> {{getAPI('listar', 'pacote', agendamento.cod_pacote)[0].nome}}</span> <span *ngIf="agendamento.cod_pacote == null"> Sem pacote</span></li>
                 <li *ngIf="agendamento.cod_servico == 2"><b>Data de Saída:</b> {{agendamento.data_saida}}</li>
-                <li><b>Observação:</b> {{agendamento.observacao}}</li>
+                <li><b>Observação: </b> {{agendamento.observacao}}</li>
               </ul>
             </div>
         </div>

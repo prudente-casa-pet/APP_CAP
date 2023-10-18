@@ -1,6 +1,6 @@
 .container{
-    max-height: 690px;
-    width: 600px;
+    // max-height: 690px;
+    // width: 600px;
     overflow-y: scroll;
 }
 
@@ -17,32 +17,29 @@
     border-radius: 3px;
 }
 
-ion-col{
-    padding-bottom: 5px;
-}
 
 ion-icon{
-    font-size: 5em;
+    font-size: 3.5em;
     color: var(--ion-color-quartenary);
     margin-top: 30px;
 }
 
 h1{
     color: #000000;
-    font-size: 2em;
+    font-size: 1.8em;
     text-wrap: wrap;
     font-weight: bolder;
-    margin: 30px 0;
+    margin: 15px 0;
 }
 
 ion-button{
     --background: var(--ion-color-quartenary);
     --font-weight: bolder;
-    border-radius: 50px;
+    border-radius: 20px;
 }
 
 .botao{
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .centro{

@@ -3,7 +3,7 @@
 <ion-header>
   <ion-toolbar color="primary" id="main-content">
     <ion-title>{{petNome}}</ion-title>
-      <ion-buttons slot="end">
+    <ion-buttons slot="end">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
@@ -24,18 +24,27 @@
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet', ''))===true">
       <div *ngFor="let pet of getAPI('listar', 'pet', '')" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.nome}}</a></div>
     </ng-container>
-      <div><a (click)="sair()">Sair</a></div>      
-    </ion-content>
+    <div class="sair"><a (click)="sair()" href="/home">Sair</a></div>
+  </ion-content>
   </ion-menu>
-  <div class="container">
+
+  <ion-row>
+    <ion-col size="12" class="ion-justify-content-center">
     <ng-container *ngIf="verificarArray(getAPI('listar', 'postagens', codPet))===true">
     <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
       <img src="{{postagem.foto}}" alt="">
-      <ion-icon name="paw" class="patinha" (click)="curtir(postagem.cod_postagem)" [class.curtido]="postagem.curtida==1"></ion-icon>
-      <p label="Comentário">{{postagem.legenda}}</p>
+      <ion-row class="linha-comentario">
+        <ion-col size="9">
+          <p>{{postagem.legenda}}</p>
+        </ion-col>
+        <ion-col size="3" class="col-patinha">
+          <ion-icon name="paw" class="patinha" (click)="curtir(postagem.cod_postagem)" [class.curtido]="postagem.curtida==1"></ion-icon>
+        </ion-col>
+      </ion-row>
     </div>
     </ng-container>
-  </div>
+    </ion-col>
+  </ion-row>
 
   
 </div>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Dancing+Script&display=swap');
 
-//MENU:
+// MENU
 a{
     color: var(--ion-color-light);
     text-decoration: none;
@@ -13,14 +13,31 @@ a:hover{
     color: var(--ion-color-secondary);
 }
 
-//mudar a cor da escrita do menu
+// Muda a cor da escrita do menu
 a {
     background-color: transparent;
     color: var(--ion-color-light);
 }
 
+.sair{
+    position: fixed;
+    bottom: 0;
+}
+
 #container{
-    min-height: calc(100vh - 112px);
+    min-height: calc(100vh - 6em);
+}
+
+ion-toolbar{
+    height: 3em;
+}
+
+ion-header{
+    position: static;
+}
+
+ion-icon{
+    font-size: 1.5em;
 }
 
 ion-title{
@@ -30,12 +47,6 @@ ion-title{
     transform: translate(-50%, -50%);
     z-index: 20000;
 }
-
-// ion-toolbar{
-//   height: 4.2em;
-//   text-align: center;
-// }
-
 
 /* Aumentar o tamanho do ion-menu-button */
 .sc-ion-buttons-md-h.ion-color.sc-ion-buttons-md-s .button, .ion-color .sc-ion-buttons-md-h.sc-ion-buttons-md-s .button {
@@ -47,23 +58,14 @@ ion-title{
     display: flex;
 }
 
-
-.upload{
-    margin: 4px auto;
-    width: 265px;
-    height: 160px;
-    border-radius: 20px;
-    border: 1px  #000;
-    background: #D9D9D9;
+.botao{
+    width: 19em;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
+    justify-content: end;
 }
 
 button{
-    margin: 2em 0 3px 160px;
+    margin: 0 0 3px 0;
     padding: 0.1em 0.5em;
     border-radius: 0.3em;
     font-size: 1em;
@@ -71,12 +73,20 @@ button{
     color: var(--ion-color-light);
 }
 
-// Icone upload
-ion-icon{
-    font-size: 1.5em;
+
+.upload{
+    margin: 4px auto;
+    width: 20em;
+    height: 12em;
+    border-radius: 20px;
+    border: 1px  #000;
+    background: #D9D9D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-//
 #upload_foto{
     display: none;
 }
@@ -86,41 +96,56 @@ ion-icon{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    object-fit: cover;
+    margin-top: 1.5em;
 }
 
 .img img{
-    margin: 20px;
-    border-radius: 20px;
     box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
+    margin: 4px auto;
+    width: 20em;
+    height: 15em;
+    border-radius: 20px;
+    display: flex;
+    object-fit: cover;
 }
 
-//foto pet
 .foto_perfil{
     width: 4em;
     height: 4em;
     border-radius: 100%;
     border: 2px solid #F5F5F5;
-    position: absolute;
+    position: fixed;
     top: 0.4em;
     left: 0.4em;
+    object-fit: cover;
     z-index: 10000;
-}
-
-//Colocar o icone depois da escrita
-.lixinho{
-    margin-left: 10em;
-    margin-right: 10px;
 }
 
 // Input do comentario
 ion-input{
-    width: 15em;
-  //text-align: center;
+    width: 19em;
 }
 
+.linha-comentario{
+    width: 19em;
+}
 
+p, .lixinho{
+    margin: 0;
+}
 
+.lixinho:hover{
+    color: var(--ion-color-primary);
+}
 
-// // colocar input de comentário no upload, e alinhar no centro. (v)
-// // sair do app (menu) (v)
-// // arrumar menu (v)
+.col-lixinho{
+    display: flex;
+    justify-content: end;
+}
+
+.linha-comentario{
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+}
