@@ -73,18 +73,20 @@ button{
     color: var(--ion-color-light);
 }
 
-
 .upload{
     margin: 4px auto;
     width: 20em;
     height: 12em;
     border-radius: 20px;
     border: 1px  #000;
-    background: #D9D9D9;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-image: url('../../assets/img/fundo-cinza.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter:opacity(0.7)
 }
 
 #upload_foto{

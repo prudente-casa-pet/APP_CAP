@@ -7,11 +7,9 @@
   </ion-toolbar>
 </ion-header>  
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
 <div id="container">
-
-  <!-- Menu -->
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -28,9 +26,9 @@
   </ion-menu>
   <ion-row>
     <ion-col size="12">
-        <p class="titulo">Hoje - {{gerarDataPostIt(hoje)}}</p>
-        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje)))===true">
-            <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje))">
+        <p class="titulo">Hoje - {{gerarData(hoje)}}</p>
+        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataAPI(hoje)))===true">
+            <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataAPI(hoje))">
               <div class="primeiraLinha">
                 <p class="titulo">{{getAPI('listar', 'pet', agendamento.cod_pet)[0].nome}} - {{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</p>
                 </div>
@@ -43,7 +41,7 @@
               </div>
           </div>
         </div>
-        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(hoje)))===false">
+        <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataAPI(hoje)))===false">
           <div class="elemento">
             <div class="segundaLinha">
               <ul>
@@ -56,9 +54,9 @@
 </ion-row>
 <ion-row>
   <ion-col size="12">
-      <p class="titulo">Amanhã - {{gerarDataPostIt(amanha)}}</p>
-      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha)))===true">
-          <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha))">
+      <p class="titulo">Amanhã - {{gerarData(amanha)}}</p>
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataAPI(amanha)))===true">
+          <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento', gerarDataAPI(amanha))">
             <div class="primeiraLinha">
               <p class="titulo">{{getAPI('listar', 'pet', agendamento.cod_pet)[0].nome}} - {{agendamento.cod_servico == 1 ? 'Day Care' : 'Hospedagem'}}</p>
               </div>
@@ -71,7 +69,7 @@
             </div>
         </div>
       </div>
-      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataPostItAPI(amanha)))===false">
+      <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento', gerarDataAPI(amanha)))===false">
         <div class="elemento">
           <div class="segundaLinha">
             <ul>
@@ -81,10 +79,8 @@
       </div>
     </div>
   </ion-col>
-  
 </ion-row>
 </div>
-
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>

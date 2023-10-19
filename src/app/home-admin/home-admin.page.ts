@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,32 +11,52 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
+
 export class HomeAdminPage implements OnInit {
 
   router: Router;
-  constructor(router: Router) {
+  menuStatus: boolean = true;
+  
+  constructor(router: Router, private menu: MenuController) {
     this.router = router;
   }
+  
   ngOnInit() {}
 
-  // Lógica de listagem
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
 
+  menuAberto(){
+    this.menuStatus = true;
+  }
+
+  // Lógica de listagem
   petNome:any = localStorage.getItem('nome_pet');
   codPet:any = localStorage.getItem('cod_pet');
   fotoPerfil:any = localStorage.getItem('foto_perfil')
   parametro = "";
 
+  // Ao clicar em um pet no menu, define configuraação para esses pets
   escolherPet(pet: any){
     localStorage.setItem('nome_pet', pet.pet_nome);
     localStorage.setItem('cod_pet', pet.cod_pet);
     localStorage.setItem('foto_perfil', pet.foto_perfil);
   }
 
+  // Zera sessão
   sair(){
     localStorage.clear()
     this.router.navigate(['/','home']);
   }
 
+  // Verifica se variavel é um array
   verificarArray(items:any): any {
     return Array.isArray(items)
   }
@@ -50,7 +70,6 @@ export class HomeAdminPage implements OnInit {
       request.setRequestHeader('Authorization', `Bearer ${token}`);
     }
     request.send();
-
     if (request.status === 200) {
       if (JSON.parse(request.responseText).ACESSO){
         console.log(JSON.parse(request.responseText).ACESSO);
@@ -72,7 +91,6 @@ export class HomeAdminPage implements OnInit {
   }
 
   // Lógica da Agenda
-
   hoje = new Date();                          // Dia atual
   amanha = this.adicionarUmDia(this.hoje);    // Dia seguinte
 
@@ -82,7 +100,8 @@ export class HomeAdminPage implements OnInit {
     return novaData;
   }
 
-  gerarDataPostIt (data:any) {
+  // Formata data para exibir
+  gerarData (data:any) {
     let mes = data.getMonth()+1;
     let dia = data.getDate();
     let dataFormatada = dia < 10 ? `0${dia}` : dia;
@@ -91,7 +110,8 @@ export class HomeAdminPage implements OnInit {
     return dataFormatada;
   }
   
-  gerarDataPostItAPI (data:any) {
+  // Formata data para buscar na API
+  gerarDataAPI (data:any) {
     let mes = data.getMonth()+1;
     let dia = data.getDate();
     let ano = data.getFullYear();

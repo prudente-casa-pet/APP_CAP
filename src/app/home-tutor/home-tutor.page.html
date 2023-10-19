@@ -6,11 +6,9 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
   <div id="container">
-
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu" (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -30,7 +28,7 @@
       <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento-pendente', ''))===true">
           <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento-pendente', '')">
             <div class="primeiraLinha">
-              <p class="titulo">{{gerarDataPostIt(agendamento.data)}}</p>
+              <p class="titulo">{{gerarData(agendamento.data)}}</p>
               </div>
             <div class="segundaLinha">
               <ul>
@@ -55,14 +53,13 @@
       </div>
     </ion-col>
 </ion-row>
-
 <ion-row>
   <ion-col size="12">
       <p class="titulo">Pagamento Efetuado</p>
       <div class="elementos" *ngIf="verificarArray(getAPI('listar', 'agendamento-efetuado', ''))===true">
           <div class="elemento" *ngFor="let agendamento of getAPI('listar', 'agendamento-efetuado', '')">
             <div class="primeiraLinha">
-              <p class="titulo">{{gerarDataPostIt(agendamento.data)}}</p>
+              <p class="titulo">{{gerarData(agendamento.data)}}</p>
               </div>
             <div class="segundaLinha">
               <ul>
@@ -87,9 +84,7 @@
     </div>
   </ion-col>
 </ion-row>
-  
 </div>
-
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>

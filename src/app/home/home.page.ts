@@ -5,7 +5,6 @@ import { IonicModule, ToastController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -14,13 +13,17 @@ import { FormsModule } from '@angular/forms';
   imports: [IonicModule, CommonModule, RouterLink, FormsModule],
   
 })
+
 export class HomePage {
+
   router: Router;
   constructor(private authService: AuthService, router: Router, private toastController: ToastController) {
     this.router = router;
   }
 
   ngOnInit(){
+
+    // Se já existe um login, redireciona a página
     if(localStorage.getItem('admin')){
       this.router.navigate(['/','admin-perfil']);
     } else if(localStorage.getItem('tutor')){
@@ -46,7 +49,6 @@ export class HomePage {
   }
 
   // Lógica de componentes
-
   async presentToast (mensagem:any) {
     const toast = await this.toastController.create({
       message: mensagem,

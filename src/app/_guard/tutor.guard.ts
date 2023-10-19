@@ -12,12 +12,14 @@ export class IsTutorGuard implements CanActivate {
     const tempoAtual = new Date().getTime();
     const exp = Number(localStorage.getItem('exp'));
 
+    // Se a sessão já expirou, apaga localStorage
     if (tempoAtual > exp){
       localStorage.clear()
     }
 
     const tutor = !!localStorage.getItem('tutor');
-
+    
+    // Verifica se a sessão é de tutor
     if (tutor) {
       return true;
     } else {

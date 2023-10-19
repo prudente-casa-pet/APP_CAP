@@ -1,5 +1,4 @@
-<img class="foto_perfil" src="{{fotoPerfil}}" alt="" onerror="this.src='../../assets/img/avatar_perfil.jpg'" >
-
+<img class="foto_perfil" src="{{fotoPerfil}}" alt="" onerror="this.src='../../assets/img/avatar.png'" >
 <ion-header>
   <ion-toolbar color="primary" id="main-content">
     <ion-title>{{petNome}}</ion-title>
@@ -8,12 +7,9 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>  
-
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollEvents]="true" (ionScroll)="handleScroll($event)">
 <div id="container">
-
-  <!-- Menu -->
-  <ion-menu side="end" contentId="main-content">
+  <ion-menu side="end" contentId="main-content" menuId="menu"  (ionDidOpen)="menuAberto()">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -28,7 +24,6 @@
       <div class="sair"><a (click)="sair()" href="/home">Sair</a></div>
     </ion-content>
   </ion-menu>
-  
   <ion-row>
     <ion-col size="12" class="ion-justify-content-center">
       <div class="img">
@@ -55,7 +50,6 @@
   </ion-col>
 </ion-row>
 </div>
-
 <ion-footer>
   <ion-toolbar color="primary">
   </ion-toolbar>

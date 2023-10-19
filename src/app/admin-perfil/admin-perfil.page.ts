@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { CommonModule, NumberSymbol } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController, NavParams, ToastController } from '@ionic/angular';
+import { IonicModule, ModalController, NavParams, ToastController, MenuController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { DeletarPostagemComponent } from '../modals/deletar-postagem/deletar-postagem.component';
@@ -14,10 +14,13 @@ import { DeletarPostagemComponent } from '../modals/deletar-postagem/deletar-pos
   standalone: true,
   imports: [IonicModule, CommonModule, FormsModule]
 })
+
 export class AdminPerfilPage implements OnInit {
 
   router: Router;
-  constructor(router: Router, private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService) {
+  menuStatus: boolean = true;
+  
+  constructor(router: Router, private renderer: Renderer2, private el: ElementRef, private modalController: ModalController, private toastController: ToastController, private firebaseService: FirebaseService, private menu: MenuController) {
     this.router = router;
   }
   
@@ -28,37 +31,44 @@ export class AdminPerfilPage implements OnInit {
     }
   }
 
+  // Fecha menu ao dar scroll na página
+  handleScroll(scroll: any){
+    if (!this.menuStatus && scroll != 0){
+      this.menuStatus = false;
+      this.menu.close('menu');
+    } else if (this.menu && scroll != 0){
+      this.menuStatus = false;
+    }
+  }
+
+  menuAberto(){
+    this.menuStatus = true;
+  }
+
   // Lógica de listagem
   petNome:any = localStorage.getItem('nome_pet');
   codPet:any = localStorage.getItem('cod_pet');
   fotoPerfil:any = localStorage.getItem('foto_perfil')
   
+  // Verifica se variavel é um array
   verificarArray(items:any): any {
     return Array.isArray(items)
   }
-  
-  generateRange(start: number, end: number): number[] {
-    const range = [];
-    for (let i = start; i <= end; i++) {
-      range.push(i);
-    }
-    return range;
-  }
-  
+
+  // Ao clicar em um pet no menu, define configuraação para esses pets
   escolherPet(pet: any){
     localStorage.setItem('nome_pet', pet.pet_nome);
     localStorage.setItem('cod_pet', pet.cod_pet);
     localStorage.setItem('foto_perfil', pet.foto_perfil);
   }
-  
+
+  // Zera sessão
   sair(){
     localStorage.clear()
     this.router.navigate(['/','home']);
   }
   
-  
   // LÓGICA DE ADICIONAR
-
   caminho:any = "";
   parametro = "";
   foto:any;
@@ -69,6 +79,7 @@ export class AdminPerfilPage implements OnInit {
   dia = String(this.hoje.getDate()).padStart(2, '0');
   data = `${this.ano}-${this.mes}-${this.dia}`;
   
+  // Função de adicionar postagem
   async adicionarPostagem () {
     if (this.foto) {
       await this.adicionarArquivo();  // Espera o aquivo ser adicionado
@@ -85,6 +96,8 @@ export class AdminPerfilPage implements OnInit {
       this.presentToast(resposta.ERRO); //chama toast da verificação
     } else {
       this.legenda = "";
+      const element = this.el.nativeElement.querySelector('.upload');
+      this.renderer.setStyle(element, 'background-image', `url('../../assets/img/fundo-cinza.png')`);
       this.presentToast("Postagem adicionada com sucesso")
     }
   }
@@ -140,11 +153,16 @@ export class AdminPerfilPage implements OnInit {
   
 
   // LÓGICA DE ARQUIVOS
-  
   onFileSelected(event: any) {
     this.foto = event.target.files[0];
     if (this.foto) {
-      this.foto = this.foto; // Atribui o arquivo à variável 'foto'
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const imageUrl = e.target.result;
+        const element = this.el.nativeElement.querySelector('.upload');
+        this.renderer.setStyle(element, 'background-image', `url(${imageUrl})`);
+      };
+      reader.readAsDataURL(this.foto);
     }
   }
 
@@ -167,8 +185,7 @@ export class AdminPerfilPage implements OnInit {
     await modal.present();
   }
 
-// Componentes
-
+  // Componentes
   async presentToast (mensagem:any) {
     const toast = await this.toastController.create({
       message: mensagem,
