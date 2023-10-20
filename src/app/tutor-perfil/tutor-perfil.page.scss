@@ -25,6 +25,14 @@ ion-toolbar{
   height: 3em;
 }
 
+ion-title{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20000;
+}
+
 ion-header{
   position: static;
 }
