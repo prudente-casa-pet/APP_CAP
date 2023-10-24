@@ -3,5 +3,9 @@
   "integrations": {
     "capacitor": {}
   },
+  "labs": {
+    "ionicServeOptions": true
+  },
   "type": "angular"
 }
+
