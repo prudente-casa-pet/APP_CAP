@@ -93,4 +93,14 @@ export class TutorPerfilPage implements OnInit {
     }
   }
 
+  imagemMaiorVisivel = false;
+  imagemMaiorUrl: string = '';
+  abrirImagemMaior(url: string) {
+    this.imagemMaiorUrl = url;
+    this.imagemMaiorVisivel = true;
+  }
+
+  fecharImagemMaior() {
+    this.imagemMaiorVisivel = false;
+  }
 }

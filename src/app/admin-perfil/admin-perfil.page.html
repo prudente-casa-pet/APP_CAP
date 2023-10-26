@@ -1,4 +1,12 @@
-<img class="foto_perfil" src="{{fotoPerfil}}" alt="" onerror="this.src='../../assets/img/avatar.png'" >
+<div *ngIf="imagemMaiorVisivel" class="imagem-maior-overlay">
+  <div class="imagem-maior-container">
+    <div class="botao">
+      <ion-icon name="close-outline" (click)="fecharImagemMaior()"></ion-icon>
+    </div>
+    <img [src]="imagemMaiorUrl"/>
+  </div>
+</div>
+<img class="foto_perfil" src="{{fotoPerfil}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(fotoPerfil)">
 <ion-header>
   <ion-toolbar color="primary" id="main-content">
     <ion-title>{{petNome}}</ion-title>
@@ -36,7 +44,7 @@
       </div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
         <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
-          <img src="{{postagem.foto}}" alt="">
+          <img *ngIf="postagem.foto"  src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
           <ion-row class="linha-comentario">
             <ion-col size="2" class="col-patinha">
               <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
