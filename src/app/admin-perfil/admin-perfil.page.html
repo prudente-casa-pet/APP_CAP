@@ -40,7 +40,7 @@
         </div>
         <label class="upload" for="upload_foto"><ion-icon name="add-circle-outline"></ion-icon></label>
         <input type="file" name="upload_foto" id="upload_foto" (change)="onFileSelected($event)">
-        <ion-input label="Comentário" labelPlacement="floating" [counter]="true" maxlength="60" [(ngModel)]="legenda"></ion-input>
+        <input label="Comentário" type="text" [(ngModel)]="legenda">
       </div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
         <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">

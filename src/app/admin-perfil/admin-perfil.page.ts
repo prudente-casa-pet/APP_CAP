@@ -73,11 +73,6 @@ export class AdminPerfilPage implements OnInit {
   parametro = "";
   foto:any;
   legenda:any = "";
-  hoje:any = new Date();
-  ano = this.hoje.getFullYear();
-  mes = String(this.hoje.getMonth() + 1).padStart(2, '0');
-  dia = String(this.hoje.getDate()).padStart(2, '0');
-  data = `${this.ano}-${this.mes}-${this.dia}`;
   
   // Função de adicionar postagem
   async adicionarPostagem () {
@@ -87,7 +82,6 @@ export class AdminPerfilPage implements OnInit {
     let postagem = {
       'legenda': `'${this.legenda}'`,
       'foto': `'${this.caminho}'`,
-      'data': `'${this.data}'`,
       'cod_pet': Number(localStorage.getItem('cod_pet')),
       'curtida': 0
     }
