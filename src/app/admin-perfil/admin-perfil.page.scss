@@ -153,6 +153,13 @@ p, .lixinho{
     align-items: center;
 }
 
+.linha-comentario p{
+    height: 42px;
+    overflow: auto; 
+}
+
+
+
 .curtido{
     color: var(--ion-color-quartenary);
 }
