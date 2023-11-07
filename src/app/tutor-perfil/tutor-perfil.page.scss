@@ -112,25 +112,37 @@ ion-icon{
 
 .linha-comentario{
   width: 19em;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-p, .patinha{
+.linha-comentario p{
+  max-width: calc(19em - 70px);
+  max-height: 46px;
+  overflow: auto;
+}
+
+.linha-comentario p::-webkit-scrollbar {
+  background-color: #e7e7e760;
+  width: 6px;
+}
+
+.linha-comentario p::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.lixinho:hover{
+  color: var(--ion-color-primary);
+}
+
+.linha-comentario p{
   margin: 0;
 }
 
 .patinha:hover{
   color: var(--ion-color-primary);
-}
-
-.col-patinha{
-  display: flex;
-  justify-content: end;
-}
-
-.linha-comentario{
-  margin: 5px 0;
-  display: flex;
-  align-items: center;
 }
 
 .imagem-maior-overlay {
@@ -156,15 +168,14 @@ p, .patinha{
 }
 
 .imagem-maior-container img {
-  max-width: 90%;
+  width: 95%;
 }
 
-.botao{
-  width: 100%;
+.botao-imagem{
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: end;
-  padding-right: 1.2em;
   font-size: 1.2em;
   color: #F5F5F5;
 }

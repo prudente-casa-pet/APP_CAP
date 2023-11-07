@@ -73,6 +73,35 @@ button{
     color: var(--ion-color-light);
 }
 
+
+#upload_foto{
+    display: none;
+}
+
+.img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    object-fit: cover;
+    margin-top: 1.5em;
+    max-width: 99%;
+}
+
+.img:last-child{
+    margin-bottom: 8px;
+}
+
+.img img{
+    box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
+    margin: 4px auto;
+    width: 20em;
+    height: 15em;
+    border-radius: 20px;
+    display: flex;
+    object-fit: cover;
+}
+
 .upload{
     margin: 4px auto;
     width: 20em;
@@ -90,29 +119,6 @@ button{
     filter:opacity(0.7)
 }
 
-#upload_foto{
-    display: none;
-}
-
-.img{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    object-fit: cover;
-    margin-top: 1.5em;
-}
-
-.img img{
-    box-shadow: var(--ion-color-tertiary-shade) 3px 3px 3px 3px;
-    margin: 4px auto;
-    width: 20em;
-    height: 15em;
-    border-radius: 20px;
-    display: flex;
-    object-fit: cover;
-}
-
 .foto_perfil{
     width: 4em;
     height: 4em;
@@ -126,39 +132,44 @@ button{
 }
 
 // Input do comentario
-ion-input{
-    width: 19em;
+input[type="text"]{
+    width: 18.5em;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--ion-color-primary);
+    margin-top: 6px;
 }
 
 .linha-comentario{
     width: 19em;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-p, .lixinho{
-    margin: 0;
+.linha-comentario p{
+    max-width: calc(19em - 70px);
+    max-height: 46px;
+    overflow: auto;
+}
+
+.linha-comentario p::-webkit-scrollbar {
+    background-color: #e7e7e760;
+    width: 6px;
+}
+
+.linha-comentario p::-webkit-scrollbar-thumb {
+    background-color: transparent;
 }
 
 .lixinho:hover{
     color: var(--ion-color-primary);
 }
 
-.col-lixinho{
-    display: flex;
-    justify-content: end;
-}
-
-.linha-comentario{
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-}
-
 .linha-comentario p{
-    height: 42px;
-    overflow: auto; 
+    margin: 0;
 }
-
-
 
 .curtido{
     color: var(--ion-color-quartenary);
@@ -187,15 +198,14 @@ p, .lixinho{
 }
 
 .imagem-maior-container img {
-    max-width: 90%;
+    width: 95%;
 }
 
-.botao{
-    width: 100%;
+.botao-imagem{
+    width: 95%;
     display: flex;
     align-items: center;
     justify-content: end;
-    padding-right: 1.2em;
     font-size: 1.2em;
     color: #F5F5F5;
 }

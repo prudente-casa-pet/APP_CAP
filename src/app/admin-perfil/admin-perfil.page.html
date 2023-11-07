@@ -1,6 +1,6 @@
 <div *ngIf="imagemMaiorVisivel" class="imagem-maior-overlay">
   <div class="imagem-maior-container">
-    <div class="botao">
+    <div class="botao-imagem">
       <ion-icon name="close-outline" (click)="fecharImagemMaior()"></ion-icon>
     </div>
     <img [src]="imagemMaiorUrl"/>
@@ -40,21 +40,15 @@
         </div>
         <label class="upload" for="upload_foto"><ion-icon name="add-circle-outline"></ion-icon></label>
         <input type="file" name="upload_foto" id="upload_foto" (change)="onFileSelected($event)">
-        <input label="Comentário" type="text" [(ngModel)]="legenda">
+        <input label="Comentário" type="text" [(ngModel)]="legenda" placeholder="Digite a legenda aqui">
       </div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
         <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
           <img *ngIf="postagem.foto"  src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
           <ion-row class="linha-comentario">
-            <ion-col size="2" class="col-patinha">
-              <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
-            </ion-col>
-            <ion-col size="7">
-              <p>{{postagem.legenda}}</p>
-            </ion-col>
-            <ion-col size="3" class="col-lixinho">
-              <ion-icon name="trash-outline" class="lixinho" (click)="modalDeletarPostagem(postagem)"></ion-icon>
-            </ion-col>
+            <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
+            <p>{{postagem.legenda}}</p>
+            <ion-icon name="trash-outline" class="lixinho" (click)="modalDeletarPostagem(postagem)"></ion-icon>
           </ion-row>
         </div>
       </ng-container>

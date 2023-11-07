@@ -1,6 +1,6 @@
 <div *ngIf="imagemMaiorVisivel" class="imagem-maior-overlay">
   <div class="imagem-maior-container">
-    <div class="botao">
+    <div class="botao-imagem">
       <ion-icon name="close-outline" (click)="fecharImagemMaior()"></ion-icon>
     </div>
     <img [src]="imagemMaiorUrl"/>
@@ -26,7 +26,7 @@
     <ion-content color="primary" class="ion-padding">
       <div><a href="/home-tutor">Home</a></div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'pet', ''))===true">
-      <div *ngFor="let pet of getAPI('listar', 'pet', '')" (click)="escolherPet(pet)"><a href="/admin-perfil">{{pet.nome}}</a></div>
+      <div *ngFor="let pet of getAPI('listar', 'pet', '')" (click)="escolherPet(pet)"><a href="/tutor-perfil">{{pet.nome}}</a></div>
     </ng-container>
     <div class="sair"><a (click)="sair()" href="/home">Sair</a></div>
   </ion-content>
@@ -37,12 +37,8 @@
     <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
       <img *ngIf="postagem.foto" src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
       <ion-row class="linha-comentario">
-        <ion-col size="9">
-          <p>{{postagem.legenda}}</p>
-        </ion-col>
-        <ion-col size="3" class="col-patinha">
-          <ion-icon name="paw" class="patinha" (click)="curtir(postagem.cod_postagem)" [class.curtido]="postagem.curtida==1"></ion-icon>
-        </ion-col>
+        <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
+        <p>{{postagem.legenda}}</p>
       </ion-row>
     </div>
     </ng-container>
