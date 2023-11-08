@@ -119,9 +119,10 @@ ion-icon{
 }
 
 .linha-comentario p{
-  max-width: calc(19em - 70px);
+  width: calc(19em - 48px);
   max-height: 46px;
   overflow: auto;
+  text-align: center;
 }
 
 .linha-comentario p::-webkit-scrollbar {

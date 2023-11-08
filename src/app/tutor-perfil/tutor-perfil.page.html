@@ -37,7 +37,7 @@
     <div class="img" *ngFor="let postagem of getAPI('listar', 'postagens', codPet)">
       <img *ngIf="postagem.foto" src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
       <ion-row class="linha-comentario">
-        <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
+        <ion-icon name="paw" class="patinha" (click)="curtir(postagem.cod_postagem)" [class.curtido]="postagem.curtida==1"></ion-icon>
         <p>{{postagem.legenda}}</p>
       </ion-row>
     </div>
