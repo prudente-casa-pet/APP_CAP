@@ -86,6 +86,11 @@ ion-icon{
   flex-direction: column;
   object-fit: cover;
   margin-top: 1.5em;
+  max-width: 99%;
+}
+
+.img:last-child{
+  margin-bottom: 8px;
 }
 
 .img img{
