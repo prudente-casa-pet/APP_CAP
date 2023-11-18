@@ -44,7 +44,8 @@
       </div>
       <ng-container *ngIf="verificarArray(getAPI('listar', 'postagem', codPet))===true">
         <div class="img" *ngFor="let postagem of getAPI('listar', 'postagem', codPet)">
-          <img *ngIf="postagem.foto"  src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
+          <img *ngIf="postagem.foto && verificarFoto(postagem.foto)" src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" (click)="abrirImagemMaior(postagem.foto)">
+          <video *ngIf="postagem.foto && verificarVideo(postagem.foto)" src="{{postagem.foto}}" alt="" onerror="this.src='../../assets/img/avatar.png'" controls></video>
           <ion-row class="linha-comentario">
             <ion-icon name="paw" class="patinha" [class.curtido]="postagem.curtida==1"></ion-icon>
             <p>{{postagem.legenda}}</p>

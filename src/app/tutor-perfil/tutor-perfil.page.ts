@@ -103,4 +103,15 @@ export class TutorPerfilPage implements OnInit {
   fecharImagemMaior() {
     this.imagemMaiorVisivel = false;
   }
+
+  // Verificação tipo de mídia
+  verificarFoto(arquivo: string): boolean {
+    let extensoes = ['jpg', 'jpeg', 'png', 'gif'];
+    return extensoes.some(valor => arquivo.includes(valor));
+  }
+
+  verificarVideo(arquivo: string): boolean {
+    let extensoes = ['mp4', 'avi', 'mkv', 'mov', 'webm'];
+    return extensoes.some(valor => arquivo.includes(valor));
+  }
 }
